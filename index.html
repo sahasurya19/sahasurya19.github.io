@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Surya Saha: engineer, product lead, LedgerGuard co-founder and Duke Fuqua MBA candidate.">
+<title>Surya Saha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<!--
+  PERSONAL SITE TEMPLATE — Surya Saha
+  Sections: Home (hero) · Writing · About · Work · LedgerGuard · Beyond · Contact
+  To edit: search for "EDIT:" comments. Draft posts are marked with class "draft".
+  Ports cleanly to Jekyll: each <article class="post"> becomes a file in _posts/.
+-->
+<style>
+/* Layout: scoreboard header + single reading column (68ch) with wide stat strip; sections as anchored "quarters" */
+:root{
+  --bg:#F2F4F7;          /* cool paper, slight navy bias */
+  --surface:#FFFFFF;
+  --ink:#121B33;         /* Fuqua-night navy */
+  --muted:#5A6378;
+  --line:#D6DBE5;
+  --sun:#C8690A;         /* saffron, darkened for text contrast */
+  --sun-soft:#F6E3CC;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1222;--surface:#151C30;--ink:#E7EAF2;--muted:#9AA3B8;--line:#27304A;--sun:#F2A541;--sun-soft:#2C2416;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1222;--surface:#151C30;--ink:#E7EAF2;--muted:#9AA3B8;--line:#27304A;--sun:#F2A541;--sun-soft:#2C2416;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit;text-decoration-color:var(--sun);text-underline-offset:3px}
+a:hover{color:var(--sun)}
+:focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.col{max-width:68ch}
+
+/* Header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;padding-block:12px}
+.brand{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:.02em;text-transform:uppercase;text-decoration:none}
+.brand span{color:var(--sun)}
+nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 18px}
+nav a{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--sun)}
+
+/* Hero */
+.hero{padding-block:64px 40px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sun);margin:0 0 12px}
+.hero h1{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(3.2rem,11vw,7.5rem);line-height:.88;letter-spacing:.005em;margin:0;text-wrap:balance}
+.hero .lede{font-size:1.2rem;color:var(--muted);margin:24px 0 0;max-width:52ch}
+.jersey{font-family:var(--display);font-weight:800;font-size:clamp(7rem,20vw,12rem);line-height:.8;color:transparent;-webkit-text-stroke:2px var(--sun);text-align:right}
+.jersey small{display:block;-webkit-text-stroke:0;color:var(--muted);font-family:var(--mono);font-size:.72rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;margin-top:10px}
+
+/* Stat strip (box score) */
+.box{margin-top:48px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.box div{padding:14px 16px 14px 0;border-right:1px solid var(--line)}
+.box div+div{padding-left:16px}
+.box div:last-child{border-right:0}
+.box b{display:block;font-family:var(--mono);font-weight:600;font-size:1.5rem;font-variant-numeric:tabular-nums}
+.box span{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* Sections */
+section.q{padding-block:56px;border-top:1px solid var(--line)}
+.q-head{display:flex;align-items:baseline;gap:16px;margin-bottom:28px}
+.q-head .tag{font-family:var(--mono);font-size:.75rem;color:var(--sun);letter-spacing:.08em}
+h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(2rem,5vw,2.8rem);line-height:1;margin:0;letter-spacing:.01em}
+h3{font-family:var(--body);font-weight:600;font-size:1.2rem;line-height:1.35;margin:0;text-wrap:balance}
+p{margin:0 0 1em}
+
+/* Posts */
+.posts{display:grid;gap:0}
+.post{padding-block:22px;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.post:first-child{padding-top:0}
+.meta{font-family:var(--mono);font-size:.74rem;color:var(--muted);letter-spacing:.04em;display:flex;flex-wrap:wrap;gap:4px 14px}
+.post p{margin:0;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:4px 0 0;padding:0}
+.tags li{font-family:var(--mono);font-size:.7rem;padding:2px 8px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.draft-pill{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;background:var(--sun-soft);color:var(--sun);padding:1px 8px;border-radius:3px}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:40px}
+.pull{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:1.6rem;line-height:1.1;border-left:3px solid var(--sun);padding-left:16px;margin:0 0 20px}
+.facts{list-style:none;margin:0;padding:0;font-size:.95rem}
+.facts li{padding-block:10px;border-bottom:1px solid var(--line);display:grid;gap:2px}
+.facts li span{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* Timeline */
+.tl{list-style:none;margin:0;padding:0}
+.tl > li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;padding-block:22px;border-bottom:1px solid var(--line)}
+.tl .yr{font-family:var(--mono);font-size:.82rem;color:var(--sun);font-variant-numeric:tabular-nums;padding-top:3px}
+.tl .org{font-family:var(--mono);font-size:.75rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin:4px 0 10px}
+.tl ul{margin:0;padding-left:1.1em;color:var(--muted);font-size:.95rem}
+.tl ul li{margin-bottom:6px}
+.tl ul b{color:var(--ink);font-weight:600}
+
+/* Venture */
+.venture{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:28px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px}
+.flow{list-style:none;margin:0;padding:0;counter-reset:s;font-size:.92rem}
+.flow li{counter-increment:s;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding-block:8px;border-bottom:1px dashed var(--line)}
+.flow li::before{content:counter(s);font-family:var(--mono);font-size:.75rem;color:var(--sun);padding-top:3px}
+
+/* Beyond */
+.beyond{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 28px}
+.beyond div{display:grid;gap:6px;align-content:start}
+.beyond .k{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sun)}
+.beyond p{color:var(--muted);font-size:.95rem;margin:0}
+
+/* Contact */
+footer{border-top:2px solid var(--ink);padding-block:48px 40px}
+.contact{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;margin:20px 0 32px}
+.email{font-family:var(--mono);font-size:1rem;user-select:all}
+button.copy{font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;background:var(--ink);color:var(--bg);border:0;padding:8px 14px;border-radius:3px;cursor:pointer}
+button.copy:hover{background:var(--sun)}
+.links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 24px;font-family:var(--mono);font-size:.82rem}
+.fine{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:32px}
+
+@media (max-width:760px){
+  .hero{padding-block:40px 28px}
+  .hero-grid,.about-grid,.venture{grid-template-columns:minmax(0,1fr)}
+  .jersey{text-align:left}
+  .box{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .box div{border-right:0;padding-left:0!important;border-bottom:1px solid var(--line)}
+  .box div:nth-child(odd){border-right:1px solid var(--line)}
+  .box div:nth-child(even){padding-left:16px!important}
+  .beyond{grid-template-columns:minmax(0,1fr)}
+  .tl > li{grid-template-columns:minmax(0,1fr);gap:6px}
+  .venture{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home">Surya <span>Saha</span></a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#ledgerguard">LedgerGuard</a></li>
+        <li><a href="#beyond">Beyond</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Engineer · Product lead · Fuqua MBA ’28</p>
+          <h1>Ledgers, Courts &amp; Long Roads</h1>
+          <p class="lede">I'm Surya. I spent six years building compliance and cash systems at Fidelity, I'm co-founding a GST reconciliation startup, and I'm now at Duke learning to think about business the way I used to think about code. This is where I write about all of it.</p>
+        </div>
+        <div class="jersey" aria-label="21 cities lived in">21<small>Cities I've called home</small></div>
+      </div>
+      <!-- EDIT: swap any stat for one you'd rather lead with -->
+      <div class="box" role="list">
+        <div role="listitem"><b>6 yrs</b><span>Fidelity Investments</span></div>
+        <div role="listitem"><b>$7T</b><span>AUM on the cash platform I led</span></div>
+        <div role="listitem"><b>15,000 ft</b><span>3+ Himalayan expeditions</span></div>
+        <div role="listitem"><b>1</b><span>Startup, first beta client in</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING (like the blog roll on the sample site) -->
+  <section class="q" id="writing">
+    <div class="wrap">
+      <div class="q-head"><span class="tag">Q1</span><h2>Writing</h2></div>
+      <div class="posts col">
+        <!-- EDIT: each article = one post. Remove class="draft" + the pill once published. -->
+        <article class="post draft">
+          <div class="meta"><span class="draft-pill">Draft</span><span>Personal essay</span></div>
+          <h3><a href="#">Twenty-one cities and one basketball court</a></h3>
+          <p>Growing up in an army family meant a new school every couple of years. The court was the one place where I never had to start from zero.</p>
+          <ul class="tags"><li>life</li><li>basketball</li><li>belonging</li></ul>
+        </article>
+        <article class="post draft">
+          <div class="meta"><span class="draft-pill">Draft</span><span>LedgerGuard</span></div>
+          <h3><a href="#">Why input tax credit leaks, and what a CA firm actually needs</a></h3>
+          <p>Matching a purchase register against GSTR-2B is the easy part. The value is in root-causing mismatches and producing something an auditor will accept.</p>
+          <ul class="tags"><li>gst</li><li>fintech</li><li>startups</li></ul>
+        </article>
+        <article class="post draft">
+          <div class="meta"><span class="draft-pill">Draft</span><span>Product</span></div>
+          <h3><a href="#">Forecasting cash that hasn't settled yet</a></h3>
+          <p>What I learned leading an ML tool that predicts whether expected shareholder cash will actually land, and why channel-partner reliability mattered more than the model.</p>
+          <ul class="tags"><li>machine learning</li><li>asset management</li><li>product</li></ul>
+        </article>
+        <article class="post draft">
+          <div class="meta"><span class="draft-pill">Draft</span><span>Stories</span></div>
+          <h3><a href="#">What the epics teach about leadership</a></h3>
+          <p>Notes behind my short videos on mythology and leadership: one story, one decision, one lesson.</p>
+          <ul class="tags"><li>mythology</li><li>leadership</li><li>storytelling</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="q" id="about">
+    <div class="wrap">
+      <div class="q-head"><span class="tag">Q2</span><h2>About</h2></div>
+      <div class="about-grid">
+        <div class="col">
+          <p class="pull">Breadth after depth.</p>
+          <p>My father became a mechanical engineer without a college degree, teaching himself from library books. He gave me the two things I still love most: basketball and technology. His love of maths is why I studied engineering at NIT Warangal.</p>
+          <p>We moved constantly. I've lived in 21 cities, and in each one basketball was how I found my footing. I went on to play at the national level, captained my college team, and still coach when I can.</p>
+          <p>At Fidelity I started as a software engineer in Investment Compliance and grew into leading product for Global Cash Operations. After six years deep in one domain, I wanted range. I came to Fuqua to move from a techno-functional manager to a strategic leader who can take on bigger problems, and I'm recruiting for consulting with that goal in mind.</p>
+        </div>
+        <ul class="facts">
+          <li><span>Now</span>MBA candidate, Duke Fuqua (Class of 2028)</li>
+          <li><span>Before</span>Fidelity Investments, Bangalore (2020–2026)</li>
+          <li><span>Building</span>LedgerGuard, co-founder</li>
+          <li><span>Studied</span>B.Tech, Metallurgical &amp; Materials Engg., NIT Warangal</li>
+          <li><span>On campus</span>MBAA Careers · INDUS Cabinet · FuquaFit Marketing &amp; Growth Coach · Fuqua Hoops · Consulting Club · Tech Club</li>
+          <li><span>Based in</span>Durham, North Carolina</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="q" id="work">
+    <div class="wrap">
+      <div class="q-head"><span class="tag">Q3</span><h2>Work</h2></div>
+      <ol class="tl col" reversed>
+        <li>
+          <div class="yr">2023–2026</div>
+          <div>
+            <h3>Lead Business Analyst / Product Manager</h3>
+            <p class="org">Fidelity · Global Cash Operations, Asset Management Tech</p>
+            <ul>
+              <li>Led the modernization of a legacy cash platform serving <b>$7T AUM</b>, unlocking <b>$1M+</b> in annual savings.</li>
+              <li>Delivered an ML/LLM settlement-prediction tool that improved liquidity-forecast accuracy by <b>70%</b>.</li>
+              <li>Built a 0-to-1 Term Loan application as Direct Lending grew from $880M to <b>$3.7B</b> AUM.</li>
+              <li>Launched an AI cash-swing diagnostics tool that cut <b>300+ hours/month</b> of L2 escalations.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="yr">2021–2023</div>
+          <div>
+            <h3>Software Engineer</h3>
+            <p class="org">Fidelity · Investment Compliance</p>
+            <ul>
+              <li>Built a rule-evaluation engine monitoring SEC ownership thresholds across <b>$5T AUM</b>.</li>
+              <li>Led a 7-developer team as interim PM on an ML onboarding pilot saving <b>500+ hours/month</b>.</li>
+              <li>Built a UI automation framework that pulled a product launch forward by <b>6 months</b>.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="yr">2020–2021</div>
+          <div>
+            <h3>Associate Software Engineer</h3>
+            <p class="org">Fidelity · Investment Compliance</p>
+            <ul>
+              <li>Rebuilt a legacy .NET research app in Angular, cutting load time by <b>67%</b>.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- LEDGERGUARD -->
+  <section class="q" id="ledgerguard">
+    <div class="wrap">
+      <div class="q-head"><span class="tag">Q4</span><h2>LedgerGuard</h2></div>
+      <div class="venture">
+        <div class="col">
+          <p class="eyebrow">Co-founder · India · Early stage</p>
+          <h3>GST input tax credit, reconciled and defensible</h3>
+          <p style="margin-top:12px;color:var(--muted)">Indian businesses lose input tax credit when their purchase records don't match what suppliers file. LedgerGuard reconciles the two, explains every mismatch, and gives Chartered Accountant firms a sign-off pack they can stand behind in an audit. We're starting with CA firms and have our first beta client.</p>
+          <!-- EDIT: add your product link -->
+          <p style="margin:0"><a href="#">Visit LedgerGuard →</a></p>
+        </div>
+        <ol class="flow" aria-label="How it works">
+          <li>Pull the purchase register and the GSTR-2B portal record</li>
+          <li>Match invoices and flag every mismatch</li>
+          <li>Root-cause each gap and route the fix to the vendor</li>
+          <li>Track Section 16(4) deadlines and blocked credits</li>
+          <li>Produce a CA sign-off and audit-defense pack</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEYOND (like "Other Interests") -->
+  <section class="q" id="beyond">
+    <div class="wrap">
+      <div class="q-head"><span class="tag">OT</span><h2>Beyond Work</h2></div>
+      <div class="beyond">
+        <div><span class="k">Basketball</span><h3>National-level player, college captain</h3><p>Captained NIT Warangal, coached 20+ players, and volunteered with the women's team. Now with Fuqua Hoops.</p></div>
+        <div><span class="k">Endurance</span><h3>Marathons and HYROX</h3><p>I race to stay honest with my training. Trail running is next on the list.</p></div>
+        <div><span class="k">Mountains</span><h3>Three Himalayan expeditions</h3><p>Every one of them above 15,000 feet.</p></div>
+        <div><span class="k">Stories</span><h3>Mythology, retold short</h3><p>I make short videos that pull leadership lessons out of the epics.</p></div>
+        <div><span class="k">Community</span><h3>Teaching money basics</h3><p>Mentored students on personal finance through Fidelity Cares.</p></div>
+        <div><span class="k">Off the clock</span><h3>Top 1% Valorant, India</h3><p>Fast decisions with incomplete information. Good case-interview practice.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- CONTACT -->
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's talk</h2>
+    <p class="col" style="color:var(--muted);margin-top:12px">Happy to chat about consulting, fintech in India, GST, or basketball.</p>
+    <div class="contact">
+      <span class="email" id="email">surya.saha@duke.edu</span>
+      <button class="copy" id="copyBtn" type="button">Copy email</button>
+    </div>
+    <!-- EDIT: replace # with your real profile URLs -->
+    <ul class="links">
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Résumé (PDF)</a></li>
+    </ul>
+    <p class="fine">Surya Saha · 2026 · Durham, NC</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('copyBtn').addEventListener('click', function(){
+  var btn=this, txt=document.getElementById('email').textContent;
+  function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy email'},1600)}
+  function fallback(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected — press Ctrl/⌘+C'}
+  try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
+});
+</script>
+</body>
+</html>
